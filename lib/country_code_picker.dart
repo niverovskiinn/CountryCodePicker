@@ -12,6 +12,7 @@ import 'package:universal_platform/universal_platform.dart';
 export 'country_code.dart';
 
 class CountryCodePicker extends StatefulWidget {
+  final void Function()? onCloseDialog;
   final ValueChanged<CountryCode>? onChanged;
   final ValueChanged<CountryCode?>? onInit;
   final String? initialSelection;
@@ -83,6 +84,7 @@ class CountryCodePicker extends StatefulWidget {
   CountryCodePicker({
     this.onChanged,
     this.onInit,
+    this.onCloseDialog,
     this.initialSelection,
     this.favorite = const [],
     this.textStyle,
@@ -318,6 +320,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
 
           _publishSelection(e);
         }
+        widget.onCloseDialog?.call();
       });
     } else {
       showMaterialModalBottomSheet(
@@ -354,6 +357,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
 
           _publishSelection(e);
         }
+        widget.onCloseDialog?.call();
       });
     }
   }
